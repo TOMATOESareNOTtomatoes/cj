@@ -38,8 +38,10 @@
                   <div>
                         <el-checkbox v-model="UserInfo.isFirst" label="是否第一次授课" true-label="0.1" false-label="0" size="large"
                               border />
-                        <el-checkbox v-model="UserInfo.isDoubleLanguage" label="是否双语" true-label="1.5" size="large" border />
-                        <el-checkbox v-model="UserInfo.isWeekend" label="是否周末" true-label="1.1" size="large" border />
+                        <el-checkbox v-model="UserInfo.isDoubleLanguage" label="是否双语" true-label="1.5" false-label="0"
+                              size="large" border />
+                        <el-checkbox v-model="UserInfo.isWeekend" label="是否周末" true-label="1.1" false-label="0" size="large"
+                              border />
                   </div>
 
                   <el-form-item>
@@ -152,7 +154,7 @@ const isSureDO = (index: number, row: classInfo) => {
       console.log('确认课程信息信息：', row)
       UserSureDo(row)
             .then(res => {
-                  console.log("确认返回结果：",res)
+                  console.log("确认返回结果：", res)
                   if (res.code === 200) {
                         ElMessage.success('确认成功');
                   } else {
@@ -160,8 +162,6 @@ const isSureDO = (index: number, row: classInfo) => {
                   }
             })
 }
-
-
 
 
 

@@ -5,7 +5,7 @@
             </el-form-item>
 
             <el-form-item label="公告/通知内容：">
-                  <el-input v-model="form.content" :rows="5" type="textarea" />
+                  <el-input v-model="form.content" :rows="8" type="textarea" />
             </el-form-item>
 
             <!-- <el-form-item label="发布时间">
@@ -18,6 +18,10 @@
                   <el-switch v-model="form.isNeedSure" active-value="0" inactive-value="1" />
             </el-form-item>
 
+            <el-form-item label="立即发布">
+                  <el-switch v-model="form.isCancel" active-value="0" inactive-value="1" />
+            </el-form-item>
+
             <!-- <el-form-item label="接收人群">
                   <el-radio-group v-model="form.isAll">
                         <el-radio label="0">全部</el-radio>
@@ -27,7 +31,7 @@
 
 
             <el-form-item>
-                  <el-button type="primary" @click="onSubmit(form, user)">发布公告</el-button>
+                  <el-button type="primary" @click="onSubmit(form)">发布公告</el-button>
                   <el-button>取消发布</el-button>
             </el-form-item>
       </el-form>
@@ -49,34 +53,20 @@ const form = ref({
       isAll: 0,
       faculty: "",
       userId: "",
-      userName: ""
+      userName: "",
+      isCancel:''
 })
 
-const user = reactive({
-      userName: "",
-      userId: "",
-      faculty: ""
-});
-
-getUserforToken().then((data) => {
-      console.log("获取到的用户数据：", data)
-      user.userName = data.data.userInfo.userName;
-      user.userId = data.data.userInfo.userId;
-      user.faculty = data.data.userInfo.faculty;
-});
-
-const onSubmit = (form, user) => {
-      form.isAll=0;
-      form.userId = user.userId;
-      form.userName = user.userName;
-      form.faculty = user.faculty;
+const onSubmit = (form) => {
+      form.userId = sessionStorage.getItem("userId")
+      form.userName = sessionStorage.getItem("userName")
+      form.faculty = sessionStorage.getItem("faculty")
       console.log("form",form)
       addAnnouncement(form)
       .then((data) => {
             console.log("announcement added", data);
       });
 };
-
 
 
 </script>

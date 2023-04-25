@@ -1,42 +1,37 @@
 <template>
-  <el-button @click="resetDateFilter">reset date filter</el-button>
-  <el-button @click="clearFilter">reset all filters</el-button>
+  <!-- <el-button @click="resetDateFilter">reset date filter</el-button> -->
+  <!-- <el-button @click="clearFilter">reset all filters</el-button> -->
   <el-table ref="tableRef" row-key="date" :data="tableData" style="width: 100%">
-    <el-table-column prop="date" label="学期" sortable width="" column-key="date" :filters="[
-      { text: '2016-05-01', value: '2016-05-01' }
-    ]" :filter-method="filterHandler" />
-
-    <el-table-column prop="name" label="姓名" width="" />
-    <el-table-column prop="name" label="课程名称" width="" />
-    <el-table-column prop="name" label="班级名称" width="" />
-    <el-table-column prop="name" label="理论学时" width="" />
-    <el-table-column prop="name" label="实验学时" width="" />
-
-    <el-table-column prop="address" label="其他" :formatter="formatter" />
-    <el-table-column prop="tag" label="合计学时" width="100" :filters="[
-      { text: 'Home', value: 'Home' },
-      { text: 'Office', value: 'Office' },
-    ]" :filter-method="filterTag" filter-placement="bottom-end">
-      <template #default="scope">
-        <el-tag :type="scope.row.tag === 'Home' ? '' : 'success'" disable-transitions>{{ scope.row.tag }}</el-tag>
-      </template>
-    </el-table-column>
+    <el-table-column prop="term" label="学期" sortable width="" column-key="date" />
+    <el-table-column prop="userName" label="姓名" width="" />
+    <el-table-column prop="teachName" label="课程名称" width="" />
+    <el-table-column prop="className" label="班级名称" width="" />
+    <el-table-column prop="theoreticalHours" label="理论学时" width="" />
+    <el-table-column prop="practicalHours" label="实验学时" width="" />
+    <el-table-column prop="special" label="其他" />
+    <el-table-column prop="outcome" label="合计工作量" width="100"></el-table-column>
   </el-table>
 </template>
     
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import type { TableColumnCtx, TableInstance } from 'element-plus'
+import { getUserDo } from '@/api/userPlus.js'
 
 interface User {
-  date: string
-  name: string
-  address: string
-  tag: string
+  term: string
+  userName: string
+  className: string
+  theoreticalHours: string
+  practicalHours: string
+  special: string
+  outcome: string
 }
 
 const tableRef = ref<TableInstance>()
+const tableData = ref<User[]>([])
 
+//ref<classInfo[]>([])
 const resetDateFilter = () => {
   tableRef.value!.clearFilter(['date'])
 }
@@ -46,12 +41,7 @@ const clearFilter = () => {
   // @ts-expect-error
   tableRef.value!.clearFilter()
 }
-const formatter = (row: User, column: TableColumnCtx<User>) => {
-  return row.address
-}
-const filterTag = (value: string, row: User) => {
-  return row.tag === value
-}
+
 const filterHandler = (
   value: string,
   row: User,
@@ -61,13 +51,12 @@ const filterHandler = (
   return row[property] === value
 }
 
-const tableData: User[] = [
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-    tag: 'Office',
-  },
-]
+onMounted(async () => {
+  const response = await getUserDo()
+  console.log("获取工作量列表：", response)
+  tableData.value = response.data.allUserDoNuSure
+})
+
+
 </script>
     

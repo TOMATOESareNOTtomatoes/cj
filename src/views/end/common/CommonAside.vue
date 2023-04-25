@@ -21,10 +21,6 @@
         <el-menu-item index="/upload">上传统计数据</el-menu-item>
       </el-menu-item-group>
 
-      <el-menu-item-group>
-        <el-menu-item index="/noticeA">发布公告</el-menu-item>
-      </el-menu-item-group>
-
     </el-sub-menu>
 
     <el-sub-menu index="2" id="isUserPlus">
@@ -45,7 +41,7 @@
       </el-menu-item-group>
 
       <el-menu-item-group>
-        <el-menu-item index="/noticeP">发布公告</el-menu-item>
+        <el-menu-item index="/noticeA">发布公告</el-menu-item>
       </el-menu-item-group>
 
       <el-menu-item-group>

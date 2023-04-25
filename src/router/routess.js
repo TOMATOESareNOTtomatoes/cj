@@ -32,17 +32,20 @@ const routess = [
             {
                 path: '/from',
                 NamedNodeMap: "待定",
-                component: () => import('@/views/end/main/from.vue')
+                component: () => import('@/views/end/main/from.vue'),
+                meta: { requiresAuth: true },
             },
             {
                 path: '/table',
                 NamedNodeMap: "用户管理页面",
-                component: () => import('@/views/end/main/admin/table.vue')
+                component: () => import('@/views/end/main/admin/table.vue'),
+                meta: { requiresAuth: true },
             },
             {
                 path: '/upload',
                 NamedNodeMap: "上传统计数据页面",
-                component: () => import('@/views/end/main/upload.vue')
+                component: () => import('@/views/end/main/upload.vue'),
+                meta: { requiresAuth: true },
             },
             {
                 path: '/tableAllDo',

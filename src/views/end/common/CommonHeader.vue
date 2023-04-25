@@ -7,7 +7,7 @@
     </template>
     <template #extra>
       <div class="flex items-center">
-      {{ user.userName }}
+        {{ user.userName }}
       </div>
     </template>
   </el-page-header>
@@ -15,7 +15,7 @@
 
    
 <script setup lang="ts">
-import { ElNotification as notify } from 'element-plus'
+import { ElMessage as notify } from 'element-plus'
 import cookie from 'js-cookie'
 import { reactive } from 'vue'
 
@@ -23,21 +23,15 @@ const onBack = () => {
   notify('Back')
 }
 
-    
-const token=cookie.get('token')
+const token = cookie.get('token')
 
-// Create a user object with userName, userId, and faculty properties
-export const user = reactive({
-userName: "",
-userId: "",
-faculty: ""
+const user = reactive({
+  userName: "",
+  userId: "",
+  faculty: ""
 })
 
-// Set the values for the user object properties
-user.userName = 'John Doe';
-user.userId = '12345';
-user.faculty = 'Engineering'; 
+user.userName = sessionStorage.getItem('userName')
 
-// The user object now contains the specified properties and values.
-     
+
 </script>
