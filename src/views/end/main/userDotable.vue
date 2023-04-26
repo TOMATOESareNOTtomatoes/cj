@@ -101,20 +101,16 @@ const tableRowClassName = ({ row, rowIndex }:
       return ''
 }
 
-let userId = ''
-getUserforToken()
-      .then(res => {
-            if (res.code === 200) {
-                  //console.log("获取用户信息通过用户的token：", res),
-                  userId = res.data.userInfo.userId,
-                        console.log("user:", userId)
-                  getUserDoInfo(userId)
-                        .then(res => {
-                              console.log("用户课程信息：", res),
-                                    tableData.value = res.data.userDoInfo
-                        })
-            }
-      })
+onMounted(async () => {
+      const userId = sessionStorage.getItem('userId')
+      getUserDoInfo(userId)
+            .then(res => {
+                  console.log("用户课程信息：", res),
+                        tableData.value = res.data.userDoInfo
+            })
+
+})
+
 
 //申请特殊情况方法
 const application = (index: number, row: classInfo) => {
@@ -162,7 +158,6 @@ const isSureDO = (index: number, row: classInfo) => {
                   }
             })
 }
-
 
 
 </script>

@@ -65,9 +65,12 @@ const onSubmit = (form) => {
       addAnnouncement(form)
       .then((data) => {
             console.log("announcement added", data);
+            if(data.code==200){
+                  form.value = null;
+                  //todo;信息提示
+            }
       });
 };
-
 
 </script>
     

@@ -8,15 +8,6 @@ export const getPermissions=()=>{
       });
 }
 
-
-// export const check=(params)=>{
-//       return serviceAxios({
-//             url:"/user/check",
-//             method:"post",
-//             params,
-//       });
-// }
-
 //用户确认课程工作量信息
 export const UserSureDo=(userDoInfo)=>{
       return serviceAxios({
@@ -63,13 +54,13 @@ export const getAnnouncements=(userCheckParam)=>{
 }
 
 //确认 是否需要确认 通知
-export const isSureAnnouncement=(announcement)=>{
-      return serviceAxios({
-            url:"/notice/announcement/isSureAnnouncement",
-            method:"post",
-            data: announcement
-      });
-}
+// export const isSureAnnouncement=(announcement)=>{
+//       return serviceAxios({
+//             url:"/notice/announcement/isSureAnnouncement",
+//             method:"post",
+//             data: announcement
+//       });
+// }
 
 //确认 通知
 export const SureAnnouncement=(announcement)=>{

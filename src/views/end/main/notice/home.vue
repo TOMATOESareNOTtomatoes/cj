@@ -5,11 +5,11 @@
         <el-collapse-item name="{{ index }}">
           <template #title>
             <el-row :gutter="450">
-              <el-col :span="100">
-                <div style="width: 110px;">标题:{{ announcement.title }}</div>
+              <el-col :span="10">
+                <div style="width: 400px;height: 15px;">标题:{{ announcement.title }}</div>
               </el-col>
-              <el-col :span="60">
-                <div style="float: inline-end;">发布人:{{ announcement.userName }}</div>
+              <el-col :span="10">
+                <div style="float: inline-end;width: 200px;">发布人:{{ announcement.userName }}</div>
               </el-col>
             </el-row>
           </template>
@@ -20,7 +20,7 @@
           </div>
 
           <div v-if="announcement.isNeedSure">
-            <el-button type="success" round :disabled=announcement.haveSure
+            <el-button type="success" round :disabled=announcement.hadSure
               @click="handleConfirmation(announcement)">确认</el-button>
           </div>
         </el-collapse-item>
@@ -52,7 +52,7 @@ interface Announcement {
   faculty: string,
   userId: string,
   userName: string,
-  haveSure: string
+  hadSure: string
 }
 
 const form = reactive({
@@ -61,41 +61,26 @@ const form = reactive({
 
 const handleConfirmation = (announcement: Announcement) => {
   console.log("确认按钮的参数：", announcement)
+  announcement.isNeedSure=0,//数据类型问题，修改的话，后台报错。
   SureAnnouncement(announcement)
     .then((res) => {
       console.log("确认结果：", res)
+      announcement.isNeedSure=true
+      onMounted;
     })
 }
 
-
 onMounted(() => {
-  getUserforToken()
+  user.userId = sessionStorage.getItem("userId")
+  user.faculty = sessionStorage.getItem("faculty")
+  getAnnouncements(user)
     .then((data) => {
-      console.log('获取到的用户数据：', data)
-      if (data.code == 200) {
-        // user.userName = data.data.userInfo.userName
-        user.userId = data.data.userInfo.userId
-        user.faculty = data.data.userInfo.faculty
-        console.log("user:", user)
-        getAnnouncements(user)
-          .then((data) => {
-            console.log('获取到的公告数据：', data)
-            form.announcements = data.data.announcements
-            form.announcements.forEach((announcement) => {
-              announcement.userId = user.userId
-              announcement.isNeedSure = announcement.isNeedSure === 0 ? true : false
-              if (announcement.isNeedSure) {
-                announcement.isNeedSure = '0'
-                isSureAnnouncement(announcement)
-                  .then((res) => {
-                    console.log("是否确认：", res.data.unSure.isSure)
-                    announcement.haveSure = res.data.unSure.isSure === 0 ? false : true
-                    announcement.isNeedSure = announcement.isNeedSure === '0' ? true : false
-                  })
-              }
-            })
-          })
-      }
+      console.log('获取到的公告数据：', data)
+      form.announcements = data.data.announcementsAddSure
+      form.announcements.forEach((announcement) => {
+        announcement.isNeedSure = announcement.isNeedSure === 0 ? true : false  //
+        announcement.hadSure = announcement.hadSure === 0 ? false : true   //
+      })
     })
 })
 
