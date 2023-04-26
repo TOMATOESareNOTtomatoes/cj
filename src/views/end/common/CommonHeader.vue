@@ -1,5 +1,5 @@
 <template>
-  <el-page-header @back="onBack" :icon="null">
+  <el-page-header :icon="null" @back="logout" title="退出登录">
     <template #content>
       <div class="flex items-center">
         <el-tag>欢迎来到工作量系统</el-tag>
@@ -13,25 +13,34 @@
   </el-page-header>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 
 import { ElMessage as notify } from 'element-plus'
 import cookie from 'js-cookie'
 import { reactive } from 'vue'
 
-const onBack = () => {
-  notify('Back')
+function logout() {
+  cookie.set("token", null)
+  window.sessionStorage.clear()
+  this.$router.push('login')
 }
 
-const token = cookie.get('token')
+export default {
+  methods: {
+    logout
+  },
+  setup() {
+    return {
+      user
+    }
+  }
+}
 
 const user = reactive({
-  userName: "",
+  userName: sessionStorage.getItem('userName'),
   userId: "",
   faculty: ""
 })
-
-user.userName = sessionStorage.getItem('userName')
 
 
 </script>

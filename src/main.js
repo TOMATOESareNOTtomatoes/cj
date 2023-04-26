@@ -5,6 +5,7 @@ import 'element-plus/dist/index.css'
 import App from './App.vue'
 import axios from '@/utils/http/axiosZ.js'
 import router from './router/index.js'
+import Particles from 'particles.vue3'
 
 const app = createApp(App)
 //引入element图标
@@ -18,4 +19,5 @@ app.config.globalProperties.$api = axios
 app.use(ElementPlus)
 app.use(router)
 app.use(ElementPlus, { size: 'small', zIndex: 3000 })
+app.use(Particles)
 app.mount('#app')
