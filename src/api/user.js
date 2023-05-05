@@ -1,5 +1,7 @@
 import serviceAxios from '@/utils/http/axiosZ.js'
 
+//   import {   } from '@/api/user.js'
+
 //根据用户的token请求获取用户的权限信息
 export const getPermissions=()=>{
       return serviceAxios({
@@ -53,20 +55,29 @@ export const getAnnouncements=(userCheckParam)=>{
       });
 }
 
-//确认 是否需要确认 通知
-// export const isSureAnnouncement=(announcement)=>{
-//       return serviceAxios({
-//             url:"/notice/announcement/isSureAnnouncement",
-//             method:"post",
-//             data: announcement
-//       });
-// }
-
 //确认 通知
 export const SureAnnouncement=(announcement)=>{
       return serviceAxios({
             url:"/notice/announcement/SureAnnouncement",
             method:"post",
             data: announcement
+      });
+}
+
+// 添加 课程 
+export const addmain=(announcement)=>{
+      return serviceAxios({
+            url:"/manage/main/addMain",
+            method:"post",
+            data: announcement
+      });
+}
+
+// 添加 课程 
+export const UserReviseDo=(userDoInfo)=>{
+      return serviceAxios({
+            url:"/manage/main/UserReviseDo",
+            method:"post",
+            data: userDoInfo
       });
 }

@@ -10,16 +10,34 @@ export const getUserDo=()=>{
       });
 }
 
-
-//返回特殊情况确认列表
-export const getAdditionalSure=()=>{
+//返回 新添加的 课程信息 用于确认
+export const getAddMain=(userCheckParam)=>{
       return serviceAxios({
-            url:"/manage/main/getAdditionalSure",
-            method:"get",         
+            url:"/manage/main/getAddMainList",
+            method:"post",    
+            data:userCheckParam     
       });
 }
 
-//同意/通过特殊情况申请
+//确认 新课
+export const sureAddMain=(userCheckParam)=>{
+      return serviceAxios({
+            url:"/manage/main/sureAddMain",
+            method:"post",    
+            data:userCheckParam     
+      });
+}
+
+//返回特殊情况确认列表
+export const getAdditionalSure=(userCheckParam)=>{
+      return serviceAxios({
+            url:"/manage/main/getAdditionalListByF",
+            method:"post",    
+            data:userCheckParam     
+      });
+}
+
+//同意 / 通过特殊情况申请
 export const AdditionalSure=(acSure)=>{
       return serviceAxios({
             url:"/manage/main/AdditionalSure",
@@ -55,7 +73,7 @@ export const myAnnouncements=(userCheckParam)=>{
       });
 }
 
-// 跟 新/修 改 自己发布的公告
+// 跟 新 / 修 改 自己发布的公告
 export const upAnnouncement=(announcement)=>{
       return serviceAxios({
             url:"/notice/announcement/upAnnouncement",

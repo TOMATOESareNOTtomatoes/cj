@@ -13,10 +13,18 @@
                   <el-table-column prop="isDoubleLanguage" label="双语系数" width="60" />
                   <el-table-column prop="isWeekend" label="周末系数" width="60" />
                   <el-table-column prop="add" label="合计" width="60" />
-                  <el-table-column align="right" style="20%">
+                  <el-table-column align="right" style="20%" width="120">
                         <template #default="scope">
-                              <el-button size="small" @click="application(scope.$index, scope.row)">申请</el-button>
-                              <el-button size="small" type="danger" @click="isSureDO(scope.$index, scope.row)">确认</el-button>
+                              <el-button size="small" @click="application(scope.$index, scope.row)">特殊情况申请</el-button>
+                              <el-button size="small" type="danger"
+                                    @click="isSureDO(scope.$index, scope.row)">确认无误</el-button>
+                        </template>
+                  </el-table-column>
+
+                  <el-table-column width="120">
+                        <template #default="scope">
+                              <el-button type="danger" size="small"
+                                    @click="errorIDo(scope.$index, scope.row)">课程信息有误</el-button>
                         </template>
                   </el-table-column>
             </el-table>
@@ -47,7 +55,6 @@
                   <el-form-item>
                         <el-button type="primary" @click="submitForm(UserInfo)">提交</el-button>
                         <el-button @click="resetForm()">取消</el-button>
-                        <el-button type="danger" @click="errorIDo()">课程信息有误</el-button>
                   </el-form-item>
             </el-form>
       </div>
@@ -58,6 +65,9 @@
 import { computed, ref, onMounted, reactive } from 'vue'
 import { UserSureDo, addAdditional, getUserforToken, getUserDoInfo } from '@/api/user.js'
 import { ElMessage } from 'element-plus';
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 interface classInfo {
       teachName: 'defaut',
@@ -159,6 +169,29 @@ const isSureDO = (index: number, row: classInfo) => {
             })
 }
 
+//修改课程信息按钮
+const errorIDo = (index: number, row: classInfo) => {
+      console.log('要修改的课程信息：', row)
+      router.push({
+            path: '/reviseForm',
+            // name: 'home',
+            query: {
+                  teachName: row.teachName,
+                  className: row.className,
+                  userName: row.userName,
+                  uniqueNumber: row.uniqueNumber,
+                  classNumber: row.classNumber,
+                  theoreticalHours: row.theoreticalHours,
+                  practicalHours: row.practicalHours,
+                  coefficientL: row.coefficientL,
+                  coefficientS: row.coefficientS,
+                  isFirst: row.isFirst,
+                  isDoubleLanguage: row.isDoubleLanguage,
+                  isWeekend: row.isWeekend,
+                  isSure: row.isSure
+            }
+      })
+}
 
 </script>
 

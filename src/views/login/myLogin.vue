@@ -1,10 +1,10 @@
 <template>
   <div class="login">
-    <!-- //全局样式class -->
-    <!-- //粒子背景插件 -->
-    <Particles id="tsparticles" class="login__particles" :options="options" />
-    <!-- 粒子背景下的具体内容展示 -->
-    <!-- 粒子背景界面样式class -->
+    <Particles 
+    id="tsparticles" 
+    class="login__particles" 
+    :options="options" 
+    />
     <div class="loginPart">
       <h2>用户登录</h2>
       <el-form ref="ruleFormRef" :model="ruleForm" status-icon :rules="rules" label-width="100px" class="demo-ruleForm"
@@ -26,6 +26,7 @@
         </div> -->
       </el-form>
     </div>
+
   </div>
 </template>
    
@@ -36,11 +37,13 @@ import { reactive, ref, onMounted } from 'vue'
 import cookie from 'js-cookie'
 import router from '@/router/index.js';
 
+
 // 定义model
 const ruleForm = ref({
   userName: "",
   password: ""
 })
+
 
 onMounted(() => {
   function created() {
@@ -53,7 +56,7 @@ const submitForm=(ruleForm)=> {
   console.log("form表单参数" + ruleForm.userName + ruleForm.password)
   login(ruleForm)
     .then(Response => {
-      //console.dir(Response)
+      console.dir(Response)
       console.log("返回的token", Response.data.token)
       if (Response.code === 200) {
         // console.log("接收到的token",cookie.get("token"))
@@ -61,8 +64,9 @@ const submitForm=(ruleForm)=> {
         sessionStorage.setItem('userName', Response.data.userName)
         sessionStorage.setItem('userId', Response.data.userId)
         sessionStorage.setItem('faculty', Response.data.faculty)
-        // console.log("成功登录，跳转")
+        console.log("成功登录，跳转")
         router.push(Response.data.url)
+        //location.reload()
       }
       else {
         ElNotification({
@@ -74,10 +78,9 @@ const submitForm=(ruleForm)=> {
 
     })
     .catch(error => {
-
+      console.log("登录失败！！！")
     })
 }
-
 
 const options = {
   fpsLimit: 60,
@@ -160,8 +163,11 @@ const options = {
   detectRetina: true
 }
 
+console.log(options)
+
 
 </script>
+
 
 <style scoped>
 .login {

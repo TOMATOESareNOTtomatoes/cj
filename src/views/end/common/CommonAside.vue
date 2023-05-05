@@ -1,5 +1,8 @@
 <template>
-  <el-menu @open="handleOpen" @close="handleClose" unique-opened="1" router>
+  <el-menu @open="handleOpen" @close="handleClose" 
+  unique-opened="1"
+  default-active="/notice"
+  :router="true">
 
     <el-sub-menu index="1" id="admin">
       <template #title>
@@ -18,6 +21,18 @@
       </el-menu-item-group>
 
       <el-menu-item-group>
+        <el-menu-item index="/sureAddMain">课程信息确认</el-menu-item>
+      </el-menu-item-group>
+
+      <el-menu-item-group>
+        <el-menu-item index="/additionalAdmin">特殊情况申请表</el-menu-item>
+      </el-menu-item-group>
+
+      <el-menu-item-group>
+        <el-menu-item index="/todo">工作量统计结果</el-menu-item>
+      </el-menu-item-group>
+
+      <el-menu-item-group>
         <el-menu-item index="/upload">上传统计数据</el-menu-item>
       </el-menu-item-group>
 
@@ -33,7 +48,7 @@
       </template>
 
       <el-menu-item-group>
-        <el-menu-item index="/tableAllDo">工作量总表</el-menu-item>
+        <el-menu-item index="/tableAllDo">教师添加的课程</el-menu-item>
       </el-menu-item-group>
 
       <el-menu-item-group>
@@ -60,6 +75,10 @@
 
       <el-menu-item-group>
         <el-menu-item index="/userDotable">工作量情況</el-menu-item>
+      </el-menu-item-group>
+
+      <el-menu-item-group>
+        <el-menu-item index="/add">添加课程</el-menu-item>
       </el-menu-item-group>
 
     </el-sub-menu>

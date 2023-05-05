@@ -9,7 +9,7 @@
             <el-table-column align="right" width="120">
                   <template #default="scope">
                         <el-button type="primary" size="small" @click="passClick(scope.$index, scope.row)">通过</el-button>
-                        <el-button type="primary" size="small" @click="unPassClick(scope.$index, scope.row)">修改</el-button>
+                        <el-button type="primary" size="small" @click="unPassClick(scope.$index, scope.row)">不同意</el-button>
                   </template>
             </el-table-column>
       </el-table>
@@ -18,7 +18,7 @@
 <script lang="ts" setup>
 
 import { computed, ref, onMounted, reactive } from 'vue'
-import { getAdditionalSure, AdditionalSure, AdditionalUnSure } from '@/api/userPlus.js'
+import { getAdditionalSure, AdditionalSureA, AdditionalUnSureA } from '@/api/admin.js'
 
 
 interface AdditionalSure {
@@ -61,7 +61,7 @@ const passClick = (index: number, row: AdditionalSure) => {
       returnInfo.sole=row.additionalId
       returnInfo.userId=user.userId
       console.log('data:', returnInfo)
-      AdditionalSure(returnInfo)
+      AdditionalSureA(returnInfo)
             .then(res => {
                   if (res.code == 200) {
                         console.log("同意成功！")
@@ -72,7 +72,7 @@ const passClick = (index: number, row: AdditionalSure) => {
 
 //修改
 const unPassClick = (index: number, row: AdditionalSure) => {
-      AdditionalUnSure(row)
+      AdditionalUnSureA(row)
             .then(res => {
                   if (res.code == 200) {
                         console.log("不同意成功！")
@@ -80,6 +80,7 @@ const unPassClick = (index: number, row: AdditionalSure) => {
             })
       onMounted;
 }
+
 
 
 </script>

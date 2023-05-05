@@ -23,6 +23,14 @@ const routess = [
         component: () => import('@/views/end/Home.vue'),
         meta: { requiresAuth: true },
         children: [
+            
+            {
+                path: '',
+                NamedNodeMap: "查看公告，默认加载页面",
+                component: () => import('@/views/end/main/notice/home.vue'),
+                meta: { requiresAuth: true },
+            },
+
             {
                 path: '/from',
                 NamedNodeMap: "待定",
@@ -36,15 +44,38 @@ const routess = [
                 meta: { requiresAuth: true },
             },
             {
-                path: '/upload',
-                NamedNodeMap: "上传统计数据页面",
-                component: () => import('@/views/end/main/upload.vue'),
+                path: '/additionalAdmin',
+                NamedNodeMap: "管理员查看特殊情况申请页面",
+                component: () => import('@/views/end/main/admin/additionalTable.vue'),
                 meta: { requiresAuth: true },
             },
             {
+                path: '/sureAddMain',
+                NamedNodeMap: "管理员查看新课申请页面",
+                component: () => import('@/views/end/main/admin/sureAddMain.vue'),
+                meta: { requiresAuth: true },
+            },
+
+            {
+                path: '/upload',
+                NamedNodeMap: "上传统计数据页面",
+                component: () => import('@/views/end/main/admin/upload.vue'),
+                meta: { requiresAuth: true },
+            },
+
+            // plus
+
+            {
+                path: '/userDo',
+                NamedNodeMap: "院长确认课程信息表",
+                component: () => import('@/views/end/main/userPlus/userDo.vue'),
+                meta: { requiresAuth: true },
+            },
+
+            {
                 path: '/tableAllDo',
                 NamedNodeMap: "工作量总表",
-                component: () => import('@/views/end/main/tableAllDo.vue'),
+                component: () => import('@/views/end/main/userPlus/tableAllDo.vue'),
                 meta: { requiresAuth: true },
             },
 
@@ -54,33 +85,58 @@ const routess = [
                 component: () => import('@/views/end/main/userPlus/additionalTable.vue'),
                 meta: { requiresAuth: true },
             },
-            {
-                path: '/userDotable',
-                NamedNodeMap: "用戶個人工作量情況顯示頁面",
-                component: () => import('@/views/end/main/userDotable.vue'),
-                meta: { requiresAuth: true },
-            },
+    
 
             {
                 path: '/noticeA',
-                NamedNodeMap: "管理员发布公告",
+                NamedNodeMap: "发布公告",
                 component: () => import('@/views/end/main/notice/notice.vue'),
                 meta: { requiresAuth: true },
             },
 
-            {
-                path: '/notice',
-                NamedNodeMap: "普通用户查看公告",
-                component: () => import('@/views/end/main/notice/home.vue'),
-                meta: { requiresAuth: true },
-            },
             {
                 path: '/myNotice',
                 NamedNodeMap: "查看自己发布的公告",
                 component: () => import('@/views/end/main/notice/noticeMyPush.vue'),
                 meta: { requiresAuth: true },
             },
+ 
+            //user
+            {
+                path: '/userDotable',
+                NamedNodeMap: "用戶個人工作量情況顯示頁面",
+                component: () => import('@/views/end/main/user/userDotable.vue'),
+                meta: { requiresAuth: true },
+            },
+            {
+                path: '/add',
+                NamedNodeMap: "用户自己添加",
+                component: () => import('@/views/end/main/user/add.vue'),
+                meta: { requiresAuth: true },
+            },
 
+            {
+                path: '/todo',
+                NamedNodeMap: "todo",
+                component: () => import('@/views/end/main/todo.vue'),
+                meta: { requiresAuth: true },
+            },
+
+            //notice
+            {
+                path: '/notice',
+                NamedNodeMap: "普通用户查看公告",
+                component: () => import('@/views/end/main/notice/home.vue'),
+                meta: { requiresAuth: true },
+            },
+
+            //other
+            {
+                path: '/reviseForm',
+                NamedNodeMap: "普通用户查看公告",
+                component: () => import('@/views/end/main/other/reviseForm.vue'),
+                meta: { requiresAuth: true },
+            },
 
         ]
     },

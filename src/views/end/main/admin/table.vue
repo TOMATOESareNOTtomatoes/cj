@@ -144,8 +144,6 @@ const submitForm = (UserInfo1) => {
     })
     .catch(error => {
       console.log("请求失败：", error);
-      // 在页面上显示请求失败信息 
-      document.getElementById("error-message").style.display = "block";
     });
 
 }
