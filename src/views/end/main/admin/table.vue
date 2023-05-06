@@ -79,7 +79,7 @@ const UserInfo = reactive({
   permissions:''
 })
 
-const dialogVisible = ref(false)
+// const dialogVisible = ref(false)
 
 const search = ref('')
 const tableData = ref<User[]>([])
@@ -107,7 +107,6 @@ const handleRevise = (index: number, row: User) => {
 }
 
 const handleDelete = (index: number, row: User) => {
-  // TODO：删除确认
   console.log(index, row)
   if (window.confirm('确定要删除该用户吗？')) 
     delete1(row)
@@ -125,8 +124,6 @@ const handleDelete = (index: number, row: User) => {
 
 //提交 修改用户信息的方法
 const submitForm = (UserInfo1) => {
-  console.log("修改参数：", UserInfo1)
-  console.log("修改权限：", UserInfo1.permissions)
   revise(UserInfo1)
     .then(res => {
       //成功校验
@@ -152,6 +149,8 @@ const resetForm = () => {
   document.getElementById("boxx").style.display = "none";// 不占位
   document.getElementById("table").style.display = "block";
 }
+
+
 
 onMounted(async () => {
   try {

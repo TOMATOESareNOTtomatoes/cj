@@ -1,6 +1,56 @@
 import serviceAxios from '@/utils/http/axiosZ.js'
 
-//     import {   } from '@/api/admin.js'
+//     import {getCoefficient} from '@/api/admin.js'
+
+
+//修改 各种系数
+export const ACoefficient=(ACoefficient)=>{
+      return serviceAxios({
+            url:"/manage/main/ACoefficient",
+            method:"post",  
+            data:ACoefficient
+      });
+}
+//修改 各种系数
+export const CoefficientTheory=(CoefficientTheory)=>{
+      return serviceAxios({
+            url:"/manage/main/CoefficientTheory",
+            method:"post",  
+            data:CoefficientTheory
+      });
+}
+//修改 各种系数
+export const CoefficientPractice=(CoefficientPractice)=>{
+      return serviceAxios({
+            url:"/manage/main/CoefficientPractice",
+            method:"post",  
+            data:CoefficientPractice
+      });
+}
+//修改 各种系数
+export const CoefficientExperiment=(CoefficientExperiment)=>{
+      return serviceAxios({
+            url:"/manage/main/CoefficientExperiment",
+            method:"post",  
+            data:CoefficientExperiment
+      });
+}
+
+//获取 各种系数
+export const getCoefficient=()=>{
+      return serviceAxios({
+            url:"/manage/main/getCoefficient",
+            method:"get",         
+      });
+}
+
+//获取 工作量统计结果表  简单版
+export const simpleAllDo=()=>{
+      return serviceAxios({
+            url:"/manage/main/simpleAllDo",
+            method:"get",         
+      });
+}
 
 
 //返回 新添加的 课程信息 用于确认

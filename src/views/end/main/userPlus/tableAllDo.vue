@@ -71,7 +71,6 @@ const unPassClick = (index: number, row: User) => {
   console.log('要修改的课程信息：', row)
       router.push({
             path: '/reviseForm',
-            // name: 'home',
             query: {
                   teachName: row.teachName,
                   className: row.className,
@@ -80,12 +79,9 @@ const unPassClick = (index: number, row: User) => {
                   classNumber: row.classNumber,
                   theoreticalHours: row.theoreticalHours,
                   practicalHours: row.practicalHours,
-                  // coefficientL: row.coefficientL,
-                  // coefficientS: row.coefficientS,
                   isFirst: row.isFirst,
                   isDoubleLanguage: row.isDoubleLanguage,
                   isWeekend: row.isWeekend,
-                  //isSure: row.isSure
             }
       })
 }

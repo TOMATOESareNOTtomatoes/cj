@@ -21,6 +21,11 @@
       </el-menu-item-group>
 
       <el-menu-item-group>
+        <el-menu-item index="/additionalManage">系数管理</el-menu-item>
+      </el-menu-item-group>
+
+
+      <el-menu-item-group>
         <el-menu-item index="/sureAddMain">课程信息确认</el-menu-item>
       </el-menu-item-group>
 
@@ -29,7 +34,7 @@
       </el-menu-item-group>
 
       <el-menu-item-group>
-        <el-menu-item index="/todo">工作量统计结果</el-menu-item>
+        <el-menu-item index="/outcome">工作量统计结果</el-menu-item>
       </el-menu-item-group>
 
       <el-menu-item-group>

@@ -34,9 +34,24 @@ const routess = [
             {
                 path: '/from',
                 NamedNodeMap: "待定",
-                component: () => import('@/views/end/main/from.vue'),
+                component: () => import('@/views/end/main/admin/from.vue'),
                 meta: { requiresAuth: true },
             },
+
+            {
+                path: '/additionalManage',
+                NamedNodeMap: "系数管理",
+                component: () => import('@/views/end/main/admin/additionalManage.vue'),
+                meta: { requiresAuth: true },
+            },
+
+            {
+                path: '/outcome',
+                NamedNodeMap: "工作量总表，简单版，含导出",
+                component: () => import('@/views/end/main/admin/outcome.vue'),
+                meta: { requiresAuth: true },
+            },
+
             {
                 path: '/table',
                 NamedNodeMap: "用户管理页面",

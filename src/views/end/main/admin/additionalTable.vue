@@ -70,7 +70,7 @@ const passClick = (index: number, row: AdditionalSure) => {
       onMounted;
 }
 
-//修改
+//不同意。
 const unPassClick = (index: number, row: AdditionalSure) => {
       AdditionalUnSureA(row)
             .then(res => {
@@ -78,7 +78,6 @@ const unPassClick = (index: number, row: AdditionalSure) => {
                         console.log("不同意成功！")
                   }
             })
-      onMounted;
 }
 
 
